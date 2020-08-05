@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package pb;
+
+option cc_generic_services = true;
+
+message ResultCode {
+    int32 error_code = 1;
+    bytes error_message = 2;
+}
+
+message GetFriendsListRequest {
+    uint32 user_id = 1;
+}
+
+message GetFriendsListResponse {
+    ResultCode result = 1;
+    repeated bytes friends = 2;
+}
+
+service FriendServiceRpc {
+    rpc GetFriendsList (GetFriendsListRequest) returns (GetFriendsListResponse);
+}
