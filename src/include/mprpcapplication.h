@@ -2,6 +2,8 @@
 #define MPRPC_SRC_INCLUDE_MPRPCAPPLICATION_H_
 
 #include "mprpcconfig.h"
+#include "mprpcchannel.h"
+#include "mprpccontroller.h"
 
 // mprpc init class
 class MprpcApplication {

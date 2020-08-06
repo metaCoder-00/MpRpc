@@ -49,12 +49,26 @@ google/protobuf/port_undef.inc
 ../src/include/mprpcapplication.h
 mprpcconfig.h
 ../src/include/mprpcconfig.h
+mprpcchannel.h
+../src/include/mprpcchannel.h
+mprpccontroller.h
+../src/include/mprpccontroller.h
+
+../src/include/mprpcchannel.h
+google/protobuf/service.h
+../src/include/google/protobuf/service.h
 
 ../src/include/mprpcconfig.h
 string
 -
 unordered_map
 -
+
+../src/include/mprpccontroller.h
+string
+-
+google/protobuf/service.h
+../src/include/google/protobuf/service.h
 
 ../src/include/rpcprovider.h
 string

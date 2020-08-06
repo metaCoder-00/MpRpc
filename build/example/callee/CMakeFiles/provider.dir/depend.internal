@@ -7,7 +7,9 @@ example/callee/CMakeFiles/provider.dir/__/friend.pb.cc.o
 example/callee/CMakeFiles/provider.dir/friendservice.cc.o
  ../example/friend.pb.h
  ../src/include/mprpcapplication.h
+ ../src/include/mprpcchannel.h
  ../src/include/mprpcconfig.h
+ ../src/include/mprpccontroller.h
  ../src/include/rpcprovider.h
  /home/coder/build/release-install-cpp11/include/muduo/base/Atomic.h
  /home/coder/build/release-install-cpp11/include/muduo/base/CurrentThread.h

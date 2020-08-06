@@ -14,7 +14,6 @@ void RpcProvider::NotifyService(google::protobuf::Service* service) {
     for (int i = 0; i < method_num; ++i) {
         auto method_descriptor_ptr = service_descriptor_ptr->method(i);
         const std::string method_name = method_descriptor_ptr->name();
-        service_info.method_map_[method_name] = method_descriptor_ptr;
         service_info.method_map_.insert({method_name, method_descriptor_ptr});
     }
     service_map_.insert({service_name, service_info});

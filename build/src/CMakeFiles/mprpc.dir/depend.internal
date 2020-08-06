@@ -3,12 +3,15 @@
 
 src/CMakeFiles/mprpc.dir/mprpcapplication.cc.o
  ../src/include/mprpcapplication.h
+ ../src/include/mprpcchannel.h
  ../src/include/mprpcconfig.h
+ ../src/include/mprpccontroller.h
  /home/coder/mprpc/src/mprpcapplication.cc
 src/CMakeFiles/mprpc.dir/mprpcchannel.cc.o
  ../src/include/mprpcapplication.h
  ../src/include/mprpcchannel.h
  ../src/include/mprpcconfig.h
+ ../src/include/mprpccontroller.h
  ../src/include/rpcheader.pb.h
  /home/coder/mprpc/src/mprpcchannel.cc
 src/CMakeFiles/mprpc.dir/mprpcconfig.cc.o
@@ -19,7 +22,9 @@ src/CMakeFiles/mprpc.dir/rpcheader.pb.cc.o
  /home/coder/mprpc/src/rpcheader.pb.cc
 src/CMakeFiles/mprpc.dir/rpcprovider.cc.o
  ../src/include/mprpcapplication.h
+ ../src/include/mprpcchannel.h
  ../src/include/mprpcconfig.h
+ ../src/include/mprpccontroller.h
  ../src/include/rpcheader.pb.h
  ../src/include/rpcprovider.h
  /home/coder/build/release-install-cpp11/include/muduo/base/Atomic.h
