@@ -1,6 +1,11 @@
 [
 {
   "directory": "/home/coder/mprpc/build/src",
+  "command": "/bin/x86_64-linux-gnu-g++-8   -I/home/coder/mprpc/src/include -I/home/coder/mprpc/example -I/home/coder/build/release-install-cpp11/include  -g   -o CMakeFiles/mprpc.dir/logger.cc.o -c /home/coder/mprpc/src/logger.cc",
+  "file": "/home/coder/mprpc/src/logger.cc"
+},
+{
+  "directory": "/home/coder/mprpc/build/src",
   "command": "/bin/x86_64-linux-gnu-g++-8   -I/home/coder/mprpc/src/include -I/home/coder/mprpc/example -I/home/coder/build/release-install-cpp11/include  -g   -o CMakeFiles/mprpc.dir/mprpcapplication.cc.o -c /home/coder/mprpc/src/mprpcapplication.cc",
   "file": "/home/coder/mprpc/src/mprpcapplication.cc"
 },

@@ -6,6 +6,22 @@
 
 #IncludeRegexTransform: 
 
+../src/include/lockqueue.h
+queue
+-
+thread
+-
+mutex
+-
+condition_variable
+-
+
+../src/include/logger.h
+string
+-
+lockqueue.h
+../src/include/lockqueue.h
+
 ../src/include/mprpcapplication.h
 mprpcconfig.h
 ../src/include/mprpcconfig.h
@@ -230,38 +246,6 @@ map
 muduo/base/copyable.h
 /home/coder/build/release-install-cpp11/include/muduo/net/muduo/base/copyable.h
 
-/home/coder/mprpc/src/mprpcapplication.cc
-mprpcapplication.h
-/home/coder/mprpc/src/mprpcapplication.h
-unistd.h
--
-iostream
--
-string
--
-
-/home/coder/mprpc/src/mprpcchannel.cc
-mprpcchannel.h
-/home/coder/mprpc/src/mprpcchannel.h
-sys/types.h
--
-sys/socket.h
--
-arpa/inet.h
--
-netinet/in.h
--
-unistd.h
--
-error.h
--
-string
--
-rpcheader.pb.h
-/home/coder/mprpc/src/rpcheader.pb.h
-mprpcapplication.h
-/home/coder/mprpc/src/mprpcapplication.h
-
 /home/coder/mprpc/src/rpcprovider.cc
 rpcprovider.h
 /home/coder/mprpc/src/rpcprovider.h
@@ -269,4 +253,6 @@ rpcheader.pb.h
 /home/coder/mprpc/src/rpcheader.pb.h
 mprpcapplication.h
 /home/coder/mprpc/src/mprpcapplication.h
+logger.h
+/home/coder/mprpc/src/logger.h
 

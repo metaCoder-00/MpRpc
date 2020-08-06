@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/coder/mprpc/src/logger.cc" "/home/coder/mprpc/build/src/CMakeFiles/mprpc.dir/logger.cc.o"
   "/home/coder/mprpc/src/mprpcapplication.cc" "/home/coder/mprpc/build/src/CMakeFiles/mprpc.dir/mprpcapplication.cc.o"
   "/home/coder/mprpc/src/mprpcchannel.cc" "/home/coder/mprpc/build/src/CMakeFiles/mprpc.dir/mprpcchannel.cc.o"
   "/home/coder/mprpc/src/mprpcconfig.cc" "/home/coder/mprpc/build/src/CMakeFiles/mprpc.dir/mprpcconfig.cc.o"
