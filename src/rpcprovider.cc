@@ -1,6 +1,7 @@
 #include "rpcprovider.h"
 #include "rpcheader.pb.h"
 #include "mprpcapplication.h"
+#include "zookeeperutil.h"
 #include "logger.h"
 
 void RpcProvider::NotifyService(google::protobuf::Service* service) {
@@ -38,6 +39,24 @@ void RpcProvider::Run() {
 
     // set muduo thread nums
     server.setThreadNum(2);
+
+    // register rpc server to the zookeeper
+    ZkClient zk_client;
+    zk_client.Start();
+    // service_name is a permanent node, method_name is a temporary node
+    for (auto& service_pair : service_map_) {
+        // /service_name
+        std::string service_path = "/" + service_pair.first;
+        zk_client.Create(service_path.c_str(), nullptr, 0);
+        for (auto& method_pair : service_pair.second.method_map_) {
+            // /service_name/method_name
+            std::string method_path = service_path + "/" + method_pair.first;
+            char method_path_data[128] = {0};
+            sprintf(method_path_data, "%s:%d", ip.c_str(), port);
+            // ZOO_EPHEMERAL: temporary node
+            zk_client.Create(method_path.c_str(), method_path_data, strlen(method_path_data), ZOO_EPHEMERAL);
+        }
+    }
 
     // Debug info.
     std::cout << "RPC server ip: " << ip << std::endl;

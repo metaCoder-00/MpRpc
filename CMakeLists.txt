@@ -3,6 +3,7 @@ project(mprpc)
 
 # debug version
 set(CMAKE_BUILD_TYPE "Debug")
+# set(CMAKE_VERBOSE_MAKEFILE on)
 
 # bin output path
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
