@@ -1,3 +1,10 @@
 .vscode/
 test/
-build/*
+log/
+
+*.out
+*.make
+*.cmake
+*.marks
+CMakeCache.txt
+*.json

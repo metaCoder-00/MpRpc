@@ -16,7 +16,7 @@ Logger::Logger() {
             tm* now_tm = localtime(&now);
 
             char file_name[128] = {0};
-            sprintf(file_name, "%d-%d-%d-log.txt", now_tm->tm_year + 1900, now_tm->tm_mon + 1, now_tm->tm_mday);
+            sprintf(file_name, "../log/%d-%d-%d-log.txt", now_tm->tm_year + 1900, now_tm->tm_mon + 1, now_tm->tm_mday);
 
             FILE* fp = fopen(file_name, "a+");
             if (nullptr == fp) {

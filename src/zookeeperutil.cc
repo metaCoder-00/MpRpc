@@ -2,6 +2,7 @@
 #include <semaphore.h>
 #include <iostream>
 #include "mprpcapplication.h"
+#include "logger.h"
 
 /*
     @param type: callback message type
@@ -42,7 +43,7 @@ void ZkClient::Start() {
     */
     zk_handle_ = zookeeper_init(connect_str.c_str(), global_watcher, 30000, nullptr, nullptr, 0);
     if (nullptr == zk_handle_) {
-        std::cout << "zookeeper_init error!" << std::endl;
+        LOG_ERROR("zookeeper_init error!");
         exit(EXIT_FAILURE);
     }
 
@@ -53,7 +54,7 @@ void ZkClient::Start() {
 
     sem_wait(&sem);
     // DEGBUG info
-    std::cout << "zookeeper_init success!" << std::endl;
+    LOG_INFO("zookeeper_init success!");
 }
 
 void ZkClient::Create(const char* path, const char* data, int data_len, int state) {
@@ -64,10 +65,9 @@ void ZkClient::Create(const char* path, const char* data, int data_len, int stat
     if (ZNONODE == flag) {
         flag = zoo_create(zk_handle_, path, data, data_len, &ZOO_OPEN_ACL_UNSAFE, state, path_buf, buf_len);
         if (ZOK == flag) {
-            std::cout << "znode create success... path: " << path << std::endl;
+            LOG_INFO("znode create success... path: %s", path);
         } else {
-            std::cout << "flag: " << flag << std::endl;
-            std::cout << "znode create error... path: " << path << std::endl;
+            LOG_ERROR("znode create error... path: %s, flag: %d", path, flag);
             exit(EXIT_FAILURE);
         }
     }
@@ -78,7 +78,7 @@ std::string ZkClient::GetData(const char* path) {
     int buf_len = sizeof(buf);
     int flag = zoo_get(zk_handle_, path, 0, buf, &buf_len, nullptr);
     if (ZOK != flag) {
-        std::cout << "get znode error... path: " << path << std::endl;
+        LOG_ERROR("get znode error... path: %s, flag: %d", path, flag);
         return "";
     } else {
         return buf;

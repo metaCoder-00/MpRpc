@@ -1,5 +1,5 @@
-#include "rpcprovider.h"
-#include "rpcheader.pb.h"
+#include "mprpcprovider.h"
+#include "mprpcheader.pb.h"
 #include "mprpcapplication.h"
 #include "zookeeperutil.h"
 #include "logger.h"
@@ -59,8 +59,8 @@ void RpcProvider::Run() {
     }
 
     // Debug info.
-    std::cout << "RPC server ip: " << ip << std::endl;
-    std::cout << "RPC server port: " << port << std::endl;
+    LOG_INFO("RPC server ip: %s", ip.c_str());
+    LOG_INFO("RPC server port: %d", port);
 
     // start service
     server.start();
@@ -101,7 +101,7 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr& conn,
         args_size = rpc_header.args_size();
     } else {
         // parse failed
-        std::cout << "rpc_header_str: " << rpc_header_str << " parse error!" << std::endl;
+        LOG_ERROR("rpc_header_str: %s parse error!", rpc_header_str.c_str());
         return;
     }
 
@@ -109,25 +109,23 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr& conn,
     std::string args_str = recive_buf.substr(4 + header_size, args_size);
 
     // Debug log
-    std::cout << "===============DEBUG Info===================" << std::endl;
-    std::cout << "rpc_header_str: " << rpc_header_str << std::endl;
-    std::cout << "header_size: " << header_size << std::endl;
-    std::cout << "service_name: " << service_name << std::endl;
-    std::cout << "method_name: " << method_name << std::endl;
-    std::cout << "args_size: " << args_size << std::endl;
-    std::cout << "args_str: " << args_str << std::endl;
-    std::cout << "============================================" << std::endl;
+    LOG_INFO("rpc_header_str: %s", rpc_header_str.c_str());
+    LOG_INFO("header_size: %d", header_size);
+    LOG_INFO("service_name: %s", service_name.c_str());
+    LOG_INFO("method_name: %s", method_name.c_str());
+    LOG_INFO("args_size: %d", args_size);
+    LOG_INFO("args_str: %s", args_str.c_str());
 
     // get service object and method object
     auto service_map_itr = service_map_.find(service_name);
     if (service_map_itr == service_map_.end()) {
-        std::cout << service_name << " not found!" << std::endl;
+        LOG_ERROR("%s not found!", service_name.c_str());
         return;
     }
 
     auto method_map_itr = service_map_itr->second.method_map_.find(method_name);
     if (method_map_itr == service_map_itr->second.method_map_.end()) {
-        std::cout << service_name << ": " << method_name << "not found!" << std::endl;
+        LOG_ERROR("%s: %s not found!", service_name.c_str(), method_name.c_str());
         return;
     }
 
@@ -137,7 +135,7 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr& conn,
     // generate rpc method call request and response args
     google::protobuf::Message* request = service_ptr->GetRequestPrototype(method_ptr).New();
     if (!request->ParseFromString(args_str)) {
-        std::cout << "request parse error!, content: " << args_str << std::endl;
+        LOG_ERROR("request parse error!, content: %s", args_str.c_str());
         return;
     }
     google::protobuf::Message* response = service_ptr->GetResponsePrototype(method_ptr).New();
@@ -160,7 +158,7 @@ void RpcProvider::SendRpcResponse(const muduo::net::TcpConnectionPtr& conn,
         // serialized successful
         conn->send(response_str);
     } else {
-        std::cout << "serialize response_str error!" << std::endl;
+        LOG_ERROR("serialize response_str error!");
     }
     conn->shutdown();   // disconnect http
 }

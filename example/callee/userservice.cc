@@ -2,7 +2,7 @@
 #include <string>
 #include "user.pb.h"
 #include "mprpcapplication.h"
-#include "rpcprovider.h"
+#include "mprpcprovider.h"
 
 class UserService : public pb::UserServiceRpc {
 private:

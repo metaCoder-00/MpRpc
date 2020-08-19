@@ -1,5 +1,5 @@
-#ifndef MPRPC_SRC_INCLUDE_RPCPROVIDER_H_
-#define MPRPC_SRC_INCLUDE_RPCPROVIDER_H_
+#ifndef MPRPC_SRC_INCLUDE_MPRPCPROVIDER_H_
+#define MPRPC_SRC_INCLUDE_MPRPCPROVIDER_H_
 
 #include <string>
 #include <unordered_map>
@@ -39,4 +39,4 @@ private:
     void SendRpcResponse(const muduo::net::TcpConnectionPtr& conn, const google::protobuf::Message* response);
 };
 
-#endif // MPRPC_SRC_INCLUDE_RPCPROVIDER_H_
+#endif // MPRPC_SRC_INCLUDE_MPRPCPROVIDER_H_

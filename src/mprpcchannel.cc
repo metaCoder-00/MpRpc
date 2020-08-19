@@ -6,9 +6,10 @@
 #include <unistd.h>
 #include <error.h>
 #include <string>
-#include "rpcheader.pb.h"
+#include "mprpcheader.pb.h"
 #include "mprpcapplication.h"
 #include "zookeeperutil.h"
+#include "logger.h"
 
 // header_size(4 bytes) + service_name method_name args_size + args
 void MprpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
@@ -52,14 +53,12 @@ void MprpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
     send_rpc_str += args_str;   // args
 
     // Debug log
-    std::cout << "===============DEBUG Info===================" << std::endl;
-    std::cout << "header_size: " << header_size << std::endl;
-    std::cout << "rpc_header_str: " << rpc_header_str << std::endl;
-    std::cout << "service_name: " << service_name << std::endl;
-    std::cout << "method_name: " << method_name << std::endl;
-    std::cout << "args_size: " << args_size << std::endl;
-    std::cout << "args_str: " << args_str << std::endl;
-    std::cout << "============================================" << std::endl;
+    LOG_INFO("header_size: %d bytes", header_size);
+    LOG_INFO("rpc_header_str: %s", rpc_header_str.c_str());
+    LOG_INFO("service_name: %s", service_name.c_str());
+    LOG_INFO("method_name: %s", method_name.c_str());
+    LOG_INFO("args_size: %d bytes", args_size);
+    LOG_INFO("args_str: %s", args_str.c_str());
 
     // TCP socket 
     int client_fd = socket(AF_INET, SOCK_STREAM, 0);   // client file descriptor
